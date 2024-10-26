@@ -1,5 +1,6 @@
 // App.js
 import React from 'react';
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -11,21 +12,15 @@ import UsernamePasswordScreen from './components/UsernamePasswordScreen';
 
 const Stack = createStackNavigator();
 
-const AppNavigator = () => {
-  return (
-    <Stack.Navigator initialRouteName="LoadingScreen">
-      <Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="Start Screen" component={LogInScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="UsernamePasswordScreen" component={UsernamePasswordScreen} options={{ headerShown: false }} />
-    </Stack.Navigator>
-  );
-};
-
 export default function App() {
   return (
     <NavigationContainer>
-      <AppNavigator />
+      <Stack.Navigator initialRouteName="LoadingScreen">
+        <Stack.Screen name="LoadingScreen" component={LoadingScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Start Screen" component={LogInScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="UsernamePasswordScreen" component={UsernamePasswordScreen} options={{ headerShown: false }} />
+      </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
   );
