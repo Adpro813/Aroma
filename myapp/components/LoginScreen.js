@@ -1,10 +1,12 @@
+// components/LoginScreen.js
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { auth } from '../firebase';
 
-function LoginScreen({ navigation }) {
+const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -20,10 +22,10 @@ function LoginScreen({ navigation }) {
 
   const defineVisibility = () => {
     setShowPassword(!showPassword);
-  }
+  };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: 'white' }]}>
       <View style={styles.logoContainer}>
         <Image
           source={require('../images/logo.webp')}
@@ -79,12 +81,12 @@ function LoginScreen({ navigation }) {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#FAF0E6',
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: 20,
@@ -103,6 +105,29 @@ const styles = StyleSheet.create({
     height: '100%',
     marginTop: 15,
   },
+  logInText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  buttonContainer: {
+    width: 200,
+    backgroundColor: 'rgb(135,206,235)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 10,
+    marginTop: 20,
+  },
+  guestText: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 16,
+    position: 'absolute',
+    bottom: 0,
+    left: 5,
+  },
   inputContainer: {
     position: 'relative',
     width: 200,
@@ -116,29 +141,6 @@ const styles = StyleSheet.create({
     borderRadius: 1,
     padding: 10,
     paddingRight: 40,
-  },
-  buttonContainer: {
-    width: 200,
-    backgroundColor: 'rgb(135,206,235)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderRadius: 10,
-    padding: 10,
-    marginTop: 20,
-  },
-  logInText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  guestText: {
-    color: 'black',
-    fontWeight: 'bold',
-    fontSize: 16,
-    position: 'absolute',
-    bottom: 0,
-    left: 5,
   },
   signUpText: {
     fontSize: 16,

@@ -1,3 +1,4 @@
+// components/HomeScreen.js
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -12,8 +13,8 @@ import axios from 'axios';
  */
 const HomeScreen = () => {
   const [ingredientsList, setIngredientsList] = useState([]);
-  const [recipes, setRecipes] = useState([]); 
-  const [inputText, setInputText] = useState(''); //temp variable later transferred to ingredientsList, used to manage input
+  const [recipes, setRecipes] = useState([]); // Retained for future use
+  const [inputText, setInputText] = useState('');
   const [showAddedMessage, setShowAddedMessage] = useState(false);
   const number = 5;
   
