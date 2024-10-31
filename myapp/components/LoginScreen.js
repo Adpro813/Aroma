@@ -6,83 +6,52 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { auth } from '../firebase';
 
-const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+/**
+ * loading screen component
+ *
+ * this screen shows a logo while checking if the user is logged in.
+ * based on the auth status, it navigates to the home screen or the start screen
+ */
+const LoadingScreen = ({ navigation }) => {
+  /**
+   * useEffect runs when the component mounts
+   * it checks the authentication status of the user
+   */
+  useEffect(() => {
+    const checkAuthStatus = () => {
+      // listen for auth state changes
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // if user is logged in, go to home screen
+          navigation.replace('HomeScreen');
+        } else {
+          // if not, go to start screen
+          navigation.replace('Start Screen');
+        }
+      });
 
-  const handleLogin = async () => {
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigation.navigate('HomeScreen');
-    } catch (error) {
-      console.error("Login error: ", error.message);
-    }
-  };
+      // clean up the listener when the component unmounts
+      return () => unsubscribe();
+    };
 
-  const defineVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+    // call the auth check function
+    checkAuthStatus();
+  }, [navigation]);
 
   return (
-    <View style={[styles.container, { backgroundColor: 'white' }]}>
-      <View style={styles.logoContainer}>
-        <Image
-          source={require('../images/logo.webp')}
-          style={{ width: 180, height: 170 }}
-        />
-      </View>
-      <View style={styles.formContainer}>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Email"
-            value={email}
-            onChangeText={setEmail}
-          />
-        </View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            secureTextEntry={!showPassword}
-            value={password}
-            onChangeText={setPassword}
-          />
-          <TouchableOpacity
-            style={styles.iconContainer}
-            onPress={defineVisibility}>
-            <Icon
-              name="visibility"
-              size={20}
-              color='gray'
-            />
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity
-          style={styles.buttonContainer}
-          onPress={handleLogin}
-        >
-          <Text style={styles.logInText}>Log in</Text>
-        </TouchableOpacity>
-
-        <Text
-          style={styles.guestText}
-          onPress={() => navigation.navigate("HomeScreen")}
-        >
-          Guest
-        </Text>
-        <Text
-          style={styles.signUpText}
-          onPress={() => navigation.navigate('UsernamePasswordScreen')}
-        >
-          Sign Up
-        </Text>
-      </View>
+    <View style={styles.container}>
+      {/* display the logo image */}
+      <Image
+        source={require('../images/logo.webp')}
+        style={{ width: 200, height: 200 }}
+      />
     </View>
   );
 };
 
+/**
+ * styles for the loading screen centers the logo and sets the background color
+ */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
