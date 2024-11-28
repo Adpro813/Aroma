@@ -1,6 +1,17 @@
 //RenderRecipes.js
+
+/**
+ * Aditya TODO:
+ * render recipe images, make the text/image render in the center, make them render together in a 
+ * card type thing, etc. chicken barbeque.
+ * 
+ * Ansh TODO: 
+ * -chicken barbqueke moneyp
+ * ull huzz
+ * ß
+*/
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, FlatList} from "react-native";
 const RenderRecipes = ({ recipe }) => {
   const renderRecipeItem = ({ item }) => {
     return <Text style={styles.test}>{item.title}</Text>;
