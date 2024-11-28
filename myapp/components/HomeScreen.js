@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -14,7 +13,7 @@ import axios from 'axios';
 const HomeScreen = () => {
   const [ingredientsList, setIngredientsList] = useState([]);
   const [recipes, setRecipes] = useState([]); 
-  const [inputText, setInputText] = useState(''); //temp variable later transfered to ingredientsList, used to manage input
+  const [inputText, setInputText] = useState(''); //temp variable later transferred to ingredientsList, used to manage input
   const [showAddedMessage, setShowAddedMessage] = useState(false);
   const number = 5;
   
@@ -22,9 +21,7 @@ const HomeScreen = () => {
    * 
    * 
    * Asynchronously fetches recipes from the Spoonacular API based on the current list of ingredients.
-   *
-   * @async
-   * @function
+   * 
    * @returns {Promise<void>}
    */
   const fetchRecipes = async () => {
@@ -42,6 +39,7 @@ const HomeScreen = () => {
       });
       const data = response.data;
       setRecipes(data); 
+      console.log(data)
     } catch (error) {
       console.log("Error searching for ingredients:", error);
     }
@@ -97,9 +95,20 @@ const HomeScreen = () => {
     setInputText('');
     setShowAddedMessage(true);
   };
+
+  const renderConfirmation = () => {
+    return (
+      <View style={styles.confirmationContainer}>
+        <Text style={styles.confirmationText}>
+          {ingredientsList[ingredientsList.length - 1]} added
+        </Text>
+      </View>
+    );
+  };
+
   /*
-  * Renders the HomeScreen component.
-  */
+   * Renders the HomeScreen component.
+   */
   return (
     <View style={styles.homeScreenContainer}>
       {/* Search Bar Section */}
@@ -123,13 +132,8 @@ const HomeScreen = () => {
 
       {/* Confirmation Message Section */}
       <View style={styles.recipeContainer}>
-        {showAddedMessage && ingredientsList.length > 0 && (
-          <View style={styles.confirmationContainer}>
-            <Text style={styles.confirmationText}>
-              {ingredientsList[ingredientsList.length - 1]} added
-            </Text>
-          </View>
-        )}
+        {showAddedMessage && ingredientsList.length > 0 && renderConfirmation()}
+        
       </View>
     </View>
   );
@@ -137,7 +141,7 @@ const HomeScreen = () => {
 
 /**
  * Stylesheet for HomeScreen Component
- */
+*/
 const styles = StyleSheet.create({
   homeScreenContainer: {
     flex: 1,
@@ -194,7 +198,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "#FCFBF4",
   },
-  // Removed recipeItem style since it's no longer used
+
 });
 
 export default HomeScreen;
