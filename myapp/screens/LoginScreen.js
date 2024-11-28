@@ -1,7 +1,5 @@
-// components/LoginScreen.js
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { auth } from '../firebase';
@@ -10,6 +8,7 @@ function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleLogin = async () => {
     try {
@@ -17,6 +16,7 @@ function LoginScreen({ navigation }) {
       navigation.navigate('HomeScreen');
     } catch (error) {
       console.error("Login error: ", error.message);
+      setErrorMessage("There was a problem logging you into Aroma. \nPlease try again.");
     }
   };
 
@@ -65,7 +65,6 @@ function LoginScreen({ navigation }) {
         >
           <Text style={styles.logInText}>Log in</Text>
         </TouchableOpacity>
-
         <Text
           style={styles.guestText}
           onPress={() => navigation.navigate("HomeScreen")}
@@ -78,6 +77,11 @@ function LoginScreen({ navigation }) {
         >
           Sign Up
         </Text>
+        {errorMessage? (
+          <Text 
+            style={styles.errorMessageText}
+          >{errorMessage}</Text>
+        ): null}
       </View>
     </View>
   );
@@ -105,29 +109,6 @@ const styles = StyleSheet.create({
     height: '100%',
     marginTop: 15,
   },
-  logInText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  buttonContainer: {
-    width: 200,
-    backgroundColor: 'rgb(135,206,235)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderRadius: 10,
-    padding: 10,
-    marginTop: 20,
-  },
-  guestText: {
-    color: 'black',
-    fontWeight: 'bold',
-    fontSize: 16,
-    position: 'absolute',
-    bottom: 0,
-    left: 5,
-  },
   inputContainer: {
     position: 'relative',
     width: 200,
@@ -142,6 +123,29 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingRight: 40,
   },
+  buttonContainer: {
+    width: 200,
+    backgroundColor: 'rgb(135,206,235)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 10,
+    marginTop: 20,
+  },
+  logInText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  guestText: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 16,
+    position: 'absolute',
+    bottom: -1,
+    left: 10,
+  },
   signUpText: {
     fontSize: 16,
     color: 'black',
@@ -155,6 +159,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 5,
   },
+  errorMessageText: {
+    color: 'red',
+    textAlign: 'center',
+    fontSize: 12.5,
+    marginTop: 20,
+  }
 });
 
 export default LoginScreen;

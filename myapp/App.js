@@ -5,10 +5,10 @@ import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import LoadingScreen from './components/LoadingScreen';
-import LogInScreen from './components/LoginScreen'; // Updated import to match casing
-import HomeScreen from './components/HomeScreen';
-import UsernamePasswordScreen from './components/UsernamePasswordScreen';
+import LoadingScreen from './screens/LoadingScreen';
+import LogInScreen from './screens/LoginScreen'; // Updated import to match casing
+import HomeScreen from './screens/HomeScreen';
+import UsernamePasswordScreen from './screens/UsernamePasswordScreen';
 
 const Stack = createStackNavigator();
 
