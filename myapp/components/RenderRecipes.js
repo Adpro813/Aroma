@@ -11,10 +11,15 @@
  * ß
 */
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, FlatList} from "react-native";
+import { View, Text, StyleSheet, FlatList, Image} from "react-native";
 const RenderRecipes = ({ recipe }) => {
   const renderRecipeItem = ({ item }) => {
-    return <Text style={styles.test}>{item.title}</Text>;
+    return(
+        <Image 
+        source = {{uri: item.uri}} 
+        styles = {styles.test}>
+        </Image> 
+    );
   };
   return (
     <FlatList
@@ -27,6 +32,7 @@ const RenderRecipes = ({ recipe }) => {
 export default RenderRecipes;
 const styles = StyleSheet.create({
   test: {
-    color: "red",
+    width:100,
+    height:100
   },
 });
