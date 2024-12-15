@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   searchBarContainer: {
-    flex: 2,
+    flex: 1,
     backgroundColor: "#FAF0E6",
     alignItems: "flex-start",
     justifyContent: "flex-start",
@@ -175,7 +175,8 @@ const styles = StyleSheet.create({
     right: 5,
   },
   recipeContainer: {
-    justifyContent: "flex-start",
+    flex: 2,
+    justifyContent: "center",
     alignItems: "center",
     backgroundColor: "grey"
   },

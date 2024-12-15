@@ -1,32 +1,44 @@
 //RenderRecipes.js
-
-/**
- * Aditya TODO:
- * render recipe images, make the text/image render in the center, make them render together in a
- * card type thing, etc. chicken barbeque.
- *
- * Ansh TODO:
- * -chicken barbqueke moneyp
- * ull huzz
- * ß
- */
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList, Image } from "react-native";
 const RenderRecipes = ({ recipe }) => {
   const renderRecipeItem = ({ item }) => {
-    return <Text styles={styles.test}>Hello</Text>;
+    return (
+      <View style={styles.itemContainer}>
+        <RecipeCard></RecipeCard>
+      </View>
+    );
+  };
+  const RecipeCard = () => {
+    <View style = {styles.card}>
+      {/* TODO: Render the recipes with the images în a card like format
+       */}
+    </View>
   };
   return (
     <FlatList
       data={recipe}
       keyExtractor={({ id }) => id}
       renderItem={renderRecipeItem}
+      contentContainerStyle={styles.listCotainer}
     />
   );
 };
-export default RenderRecipes;
 const styles = StyleSheet.create({
-  test: {
-    color: "red",
+  card:
+  {
+
+  },
+  listCotainer: {
+    flexGrow: 1,
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  text: {
+    color: "black",
+  },
+  itemContainer: {
+    alignItems: "center",
   },
 });
+export default RenderRecipes;
