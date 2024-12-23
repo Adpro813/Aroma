@@ -8,7 +8,7 @@ import LoadingScreen from './screens/LoadingScreen';
 import LogInScreen from './screens/LoginScreen'; // Updated import to match casing
 import HomeScreen from './screens/HomeScreen';
 import UsernamePasswordScreen from './screens/UsernamePasswordScreen';
-
+import InstructionsScreen from './screens/InstructionsScreen';
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -18,6 +18,7 @@ const AppNavigator = () => {
       <Stack.Screen name="Start Screen" component={LogInScreen} options={{ headerShown: false }} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
       <Stack.Screen name="UsernamePasswordScreen" component={UsernamePasswordScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="InstructionsScreen" component={InstructionsScreen} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 };

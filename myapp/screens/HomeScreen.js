@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
+  ScrollView,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import axios from "axios";
@@ -18,18 +19,15 @@ import RenderRecipes from "../components/RenderRecipes";
  * Users can add ingredients to a list, and the component fetches relevant recipes.
  *
  */
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   const [ingredientsList, setIngredientsList] = useState(["onion"]); // Starting ingredients list with "onion"
   const [recipes, setRecipes] = useState([]);
   const [inputText, setInputText] = useState(""); //temp variable later transfered to ingredientsList, used to manage input
   const [showAddedMessage, setShowAddedMessage] = useState(false);
-  const number = 10; //todo: allow users to select
+  const number = 15; //todo: allow users to select
 
   /**
-   *
-   *
    * Asynchronously fetches recipes from the Spoonacular API based on the current list of ingredients.
-   *
    * @async
    * @function
    * @returns {Promise<void>}
@@ -122,8 +120,9 @@ const HomeScreen = () => {
         </View>
       </View>
       {/* Render the recipes in cards */}
+
       <View style={styles.recipeContainer}>
-        <RenderRecipes recipe={recipes}></RenderRecipes>
+        <RenderRecipes recipe={recipes} navigation = {navigation}/>
       </View>
     </View>
   );
@@ -162,7 +161,7 @@ const styles = StyleSheet.create({
     right: 5,
   },
   recipeContainer: {
-    flex: 5,
+    flex: 10,
     justifyContent: "flex-start",
     alignItems: "center",
     backgroundColor: "white",

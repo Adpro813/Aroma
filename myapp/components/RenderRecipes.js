@@ -1,12 +1,12 @@
 //RenderRecipes.js
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList, Image } from "react-native";
-import RecipeCard from "./RecipeCard";
-const RenderRecipes = ({ recipe }) => {
+import RecipeCard from "./RecipeCard"
+const RenderRecipes = ({ recipe, navigation }) => {
   const renderRecipeItem = ({ item }) => {
     return (
       <View style={styles.itemContainer}>
-        <RecipeCard recipe = {item}>
+        <RecipeCard recipe = {item} navigation = {navigation}>
         </RecipeCard>
       </View>
     );
