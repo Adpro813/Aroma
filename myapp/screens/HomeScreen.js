@@ -19,11 +19,11 @@ import RenderRecipes from "../components/RenderRecipes";
  *
  */
 const HomeScreen = () => {
-  const [ingredientsList, setIngredientsList] = useState([]);
+  const [ingredientsList, setIngredientsList] = useState(["onion"]); // Starting ingredients list with "onion"
   const [recipes, setRecipes] = useState([]);
   const [inputText, setInputText] = useState(""); //temp variable later transfered to ingredientsList, used to manage input
   const [showAddedMessage, setShowAddedMessage] = useState(false);
-  const number = 5;
+  const number = 10; //todo: allow users to select
 
   /**
    *
@@ -46,7 +46,7 @@ const HomeScreen = () => {
           params: {
             ingredients: ingredientsString,
             number: number,
-            apiKey: "f649ff29c7db47f0997943636ce3ab7d", // Consider moving this to environment variables
+            apiKey: "1486f6ee64af433c9fb1d20d41e49e2a", // Consider moving this to environment variables
           },
         }
       );
@@ -58,9 +58,7 @@ const HomeScreen = () => {
   };
 
   /**
-   * showAddedMessage Timeout
-   *
-   * This hook manages the visibility of the confirmation message
+   * Manages the visibility of the confirmation message
    * displayed when a new ingredient is added. The message is shown for 2 seconds
    * before automatically hiding. Is the little green box at the bottom that appears.
    */
@@ -77,9 +75,7 @@ const HomeScreen = () => {
   }, [showAddedMessage]);
 
   /**
-   * Effect Hook: Fetch Recipes on Ingredients List Change
-   *
-   * This useEffect hook triggers the `fetchRecipes` function whenever
+   * Triggers the `fetchRecipes` function whenever
    * the `ingredientsList` state changes, making sure that the recipe data
    * is updated based on the latest list of ingredients.
    */
@@ -90,18 +86,13 @@ const HomeScreen = () => {
   }, [ingredientsList]);
 
   /**
-   * searchRecipes
-   *
    * Handles the addition of a new ingredient to the `ingredientsList`.
    * It validates the input to prevent adding empty strings and then updates
    * the state accordingly. A confirmation message is displayed after successful addition.
-   *
-   * @function
-   * @returns {void}
    */
   const searchRecipes = () => {
     if (inputText.trim() === "") {
-      return; // Prevent adding empty ingredients
+      return;
     }
     setIngredientsList([...ingredientsList, inputText.trim()]);
     setInputText("");
@@ -130,8 +121,7 @@ const HomeScreen = () => {
           />
         </View>
       </View>
-
-      {/* Confirmation Message Section */}
+      {/* Render the recipes in cards */}
       <View style={styles.recipeContainer}>
         <RenderRecipes recipe={recipes}></RenderRecipes>
       </View>
@@ -139,9 +129,6 @@ const HomeScreen = () => {
   );
 };
 
-/**
- * Stylesheet for HomeScreen Component
- */
 const styles = StyleSheet.create({
   homeScreenContainer: {
     flex: 1,
@@ -152,7 +139,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FAF0E6",
     alignItems: "flex-start",
     justifyContent: "flex-start",
-    paddingTop: 35,
+    paddingTop: 40,
     paddingLeft: 11,
   },
   searchBar: {
@@ -175,10 +162,10 @@ const styles = StyleSheet.create({
     right: 5,
   },
   recipeContainer: {
-    flex: 2,
-    justifyContent: "center",
+    flex: 5,
+    justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "grey"
+    backgroundColor: "white",
   },
   // confirmationContainer: {
   //   position: "absolute",
@@ -199,7 +186,7 @@ const styles = StyleSheet.create({
   //   fontSize: 18,
   //   color: "#FCFBF4",
   // },
-  // Removed recipeItem style since it's no longer used
+  // come back to this later
 });
 
 export default HomeScreen;

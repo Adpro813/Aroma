@@ -1,20 +1,17 @@
 //RenderRecipes.js
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList, Image } from "react-native";
+import RecipeCard from "./RecipeCard";
 const RenderRecipes = ({ recipe }) => {
   const renderRecipeItem = ({ item }) => {
     return (
       <View style={styles.itemContainer}>
-        <RecipeCard></RecipeCard>
+        <RecipeCard recipe = {item}>
+        </RecipeCard>
       </View>
     );
   };
-  const RecipeCard = () => {
-    <View style = {styles.card}>
-      {/* TODO: Render the recipes with the images în a card like format
-       */}
-    </View>
-  };
+
   return (
     <FlatList
       data={recipe}
@@ -25,20 +22,18 @@ const RenderRecipes = ({ recipe }) => {
   );
 };
 const styles = StyleSheet.create({
-  card:
-  {
-
-  },
   listCotainer: {
-    flexGrow: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
+
+    flexWrap: 'wrap',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    gap: 5,
+    padding: 10,
   },
-  text: {
-    color: "black",
-  },
+  
   itemContainer: {
-    alignItems: "center",
+    margin: 5,
   },
 });
 export default RenderRecipes;
