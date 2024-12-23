@@ -8,7 +8,6 @@ import {
   Pressable,
   ScrollView,
 } from "react-native";
-import { renderInstructions } from "./RenderInstructions";
 const RecipeCard = ({ recipe, navigation }) => {
   return (
     <Pressable style={styles.card} onPress={() => renderInstructions(navigation)}>
