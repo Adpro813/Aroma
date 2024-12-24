@@ -20,7 +20,7 @@ import RenderRecipes from "../components/RenderRecipes";
  *
  */
 const HomeScreen = ({navigation}) => {
-  const [ingredientsList, setIngredientsList] = useState(["onion"]); // Starting ingredients list with "onion"
+  const [ingredientsList, setIngredientsList] = useState(["onion"]);
   const [recipes, setRecipes] = useState([]);
   const [inputText, setInputText] = useState(""); //temp variable later transfered to ingredientsList, used to manage input
   const [showAddedMessage, setShowAddedMessage] = useState(false);
@@ -120,9 +120,8 @@ const HomeScreen = ({navigation}) => {
         </View>
       </View>
       {/* Render the recipes in cards */}
-
       <View style={styles.recipeContainer}>
-        <RenderRecipes recipe={recipes} navigation = {navigation}/>
+        <RenderRecipes recipes={recipes} navigation = {navigation}/>
       </View>
     </View>
   );

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList, Image } from "react-native";
 import RecipeCard from "./RecipeCard"
-const RenderRecipes = ({ recipe, navigation }) => {
+const RenderRecipes = ({ recipes, navigation }) => {
   const renderRecipeItem = ({ item }) => {
     return (
       <View style={styles.itemContainer}>
@@ -14,7 +14,7 @@ const RenderRecipes = ({ recipe, navigation }) => {
 
   return (
     <FlatList
-      data={recipe}
+      data={recipes}
       keyExtractor={({ id }) => id}
       renderItem={renderRecipeItem}
       contentContainerStyle={styles.listCotainer}

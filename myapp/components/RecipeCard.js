@@ -10,15 +10,15 @@ import {
 } from "react-native";
 const RecipeCard = ({ recipe, navigation }) => {
   return (
-    <Pressable style={styles.card} onPress={() => renderInstructions(navigation)}>
+    <Pressable style={styles.card} onPress={() => renderInstructions(navigation, recipe.id)}>
       <Text style={styles.text}>{recipe.title}</Text>
       <Image source={{ uri: recipe.image }} style={styles.image} />
     </Pressable>
   );
 };
 
-const renderInstructions = (navigation) => {
-  navigation.navigate("InstructionsScreen")
+const renderInstructions = (navigation, id) => {
+  navigation.navigate("InstructionsScreen", { id: id })
 };
 
 const styles = StyleSheet.create({
