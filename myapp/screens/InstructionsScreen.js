@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import axios from "axios";
+import RenderInstructions from "../components/RenderInstructions";
 
 const InstructionsScreen = () => {
   const route = useRoute();
@@ -33,15 +34,7 @@ const InstructionsScreen = () => {
 
   return (
     <View style={styles.container}>
-      {instructions.length > 0 ? (
-        instructions[0].steps.map((step, index) => (
-          <Text key={index} style={styles.step}>
-            {index + 1}. {step.step}
-          </Text>
-        ))
-      ) : (
-        <Text>No instructions available</Text>
-      )}
+      <RenderInstructions instructions={instructions} />
     </View>
   );
 };
@@ -49,7 +42,6 @@ const InstructionsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
   },
   step: {
     fontSize: 16,

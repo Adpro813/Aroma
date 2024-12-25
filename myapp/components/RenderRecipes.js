@@ -20,10 +20,10 @@ const RenderRecipes = ({ recipes, navigation }) => {
       contentContainerStyle={styles.listCotainer}
     />
   );
+  
 };
 const styles = StyleSheet.create({
   listCotainer: {
-
     flexWrap: 'wrap',
     flexDirection: "row",
     justifyContent: "center",
