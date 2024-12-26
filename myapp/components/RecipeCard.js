@@ -8,9 +8,12 @@ import {
   Pressable,
   ScrollView,
 } from "react-native";
-const RecipeCard = ({ recipe, navigation }) => {
+const RecipeCard = ({ recipe, navigation}) => {
   return (
-    <Pressable style={styles.card} onPress={() => renderInstructions(navigation, recipe.id)}>
+    <Pressable
+      style={styles.card}
+      onPress={() => renderInstructions(navigation, recipe.id)}
+    >
       <Text style={styles.text}>{recipe.title}</Text>
       <Image source={{ uri: recipe.image }} style={styles.image} />
     </Pressable>
@@ -18,7 +21,7 @@ const RecipeCard = ({ recipe, navigation }) => {
 };
 
 const renderInstructions = (navigation, id) => {
-  navigation.navigate("InstructionsScreen", { id: id })
+  navigation.navigate("InstructionsScreen", { id: id });
 };
 
 const styles = StyleSheet.create({

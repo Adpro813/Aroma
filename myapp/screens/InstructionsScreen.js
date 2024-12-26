@@ -16,7 +16,7 @@ const InstructionsScreen = () => {
         `https://api.spoonacular.com/recipes/${id}/analyzedInstructions`,
         {
           params: {
-            apiKey: "1486f6ee64af433c9fb1d20d41e49e2a",
+            apiKey: "f649ff29c7db47f0997943636ce3ab7d",
           },
         }
       );
