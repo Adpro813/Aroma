@@ -7,7 +7,7 @@ Too lazy to cook? Aroma finds recipes instantly using just the ingredients in yo
 
    ```
    git clone https://github.com/Adpro813/Aroma
-   npm install -g expo-cli 
+   npm i
    cd myapp
    npx expo start
    ```
