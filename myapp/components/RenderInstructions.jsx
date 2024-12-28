@@ -4,12 +4,8 @@ import { View, Text, StyleSheet, FlatList, Image } from "react-native";
 import RenderInstruction from "./RenderInstruction";
 
 const RenderInstructions = ({ instructions }) => {
-
-  console.log("reached instructions")
   if (!instructions || instructions.length === 0) {
-    return(
-      <Text style = {styles.text}>No instrunctions for this recipe!</Text>
-    );
+    return <Text style={styles.noText}>No instructions!</Text>;
   }
 
   const steps = instructions[0].steps;
@@ -18,27 +14,30 @@ const RenderInstructions = ({ instructions }) => {
     <FlatList
       data={steps}
       keyExtractor={({ number }) => number.toString()}
-      renderItem={({ item, index}) => 
-      <RenderInstruction data = {steps} step={item.step} stepCounter = {index+1}/>
-      }
-      contentContainerStyle={styles.container}
+      renderItem={({ item, index }) => (
+        <RenderInstruction data={steps} step={item.step} stepCounter={index + 1} />
+      )}
+      // Give the FlatList itself flex:1...
+      style={styles.flatList}
+      // ...but remove flex:1 from the contentContainer
+      contentContainerStyle={styles.contentContainer}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#FAF0E6",
-    justifyContent: "flex-start",
-    // alignItems: "center",
-    flexDirection: "column",
+  flatList: {
+    flex: 1,                   // Let the list fill the screen
+    backgroundColor: "#FAF0E6"
   },
-  text: {
+  contentContainer: {
+    paddingVertical: 10,       // Possibly some spacing
+  },
+  noText: {
     fontWeight: "bold",
-    textAlign:"center",
-    // textAlignVertical:"center"
+    textAlign: "center",
   },
 });
+
 
 export default RenderInstructions;
