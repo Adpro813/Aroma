@@ -1,6 +1,7 @@
 //Render Instructions
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList, Image } from "react-native";
+import { Platform } from "react-native";
 import RenderInstruction from "./RenderInstruction";
 
 const RenderInstructions = ({ instructions }) => {
@@ -27,11 +28,11 @@ const RenderInstructions = ({ instructions }) => {
 
 const styles = StyleSheet.create({
   flatList: {
-    flex: 1,                   // Let the list fill the screen
+    flex: 1,                   
     backgroundColor: "#FAF0E6"
   },
   contentContainer: {
-    paddingVertical: 10,       // Possibly some spacing
+    paddingVertical: Platform.OS === 'ios' ? 50 : 15,       
   },
   noText: {
     fontWeight: "bold",
