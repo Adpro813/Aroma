@@ -162,7 +162,6 @@ const styles = StyleSheet.create({
   recipeContainer: {
     flex: 10,
     justifyContent: "flex-start",
-    alignItems: "center",
     backgroundColor: "white",
   },
   // confirmationContainer: {

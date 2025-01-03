@@ -7,6 +7,7 @@ import {
   Image,
   Pressable,
   ScrollView,
+  Platform
 } from "react-native";
 const InstructionCard = ({ step, stepCounter,data}) => {
     const formattedStep = step.replace(/\.([^\s])/g, '. $1');
@@ -18,7 +19,7 @@ const InstructionCard = ({ step, stepCounter,data}) => {
 };
 const styles = StyleSheet.create({
   card: {
-    width: "50%",
+    width: Platform.OS === 'ios' ? "75%" : "50%",
     height: 200,
     backgroundColor: "white",
     justifyContent:"center",
@@ -26,6 +27,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding:10,
   },
+  
   text: {
     fontWeight: "bold",
     fontSize: 16,
